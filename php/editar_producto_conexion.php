@@ -10,9 +10,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "UPDATE productos SET nombre = '$nombre', precio = '$precio', stock = '$cantidad' WHERE id = $id";
 
     if ($conexion->query($query) === TRUE) {
-        echo "Producto actualizado con éxito.";
+        echo "<script>
+            alert('Producto actualizado con éxito.');
+            setTimeout(function() {
+                window.location.href = '../php/listar_productos.php'; 
+            }, 1000); 
+        </script>";
+
     } else {
-        echo "Error: " . $conexion->error;
+        echo "<script>
+            alert('Error: " . addslashes($conexion->error) . "');
+            setTimeout(function() {
+                window.location.href = '../php/listar_productos.php'; // Cambia la URL según sea necesario
+            }, 1000); 
+        </script>";
+
     }
 }
 ?>

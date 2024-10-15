@@ -2,6 +2,7 @@
 include '../conexion.php';
 ?>
 <link rel="stylesheet" href="../css/estilo.css"> 
+<button onclick="history.back()" class="btn">Volver Atrás</button>
 
 <form action="registrar_ventas_conexion.php" method="POST">
   <label for="producto">Producto:</label>
@@ -31,6 +32,8 @@ include '../conexion.php';
 
   <button type="submit">Registrar Venta</button>
 </form>
+
+<a href="../index.php" class="btn">Volver al Inicio</a>
 
 <script>
   const productoSelect = document.getElementById('productoSelect');

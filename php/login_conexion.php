@@ -14,13 +14,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // Verificar si la contraseña es correcta
         if (password_verify($password, $usuario['password'])) {
-            echo "Inicio de sesión exitoso. Bienvenido, " . $usuario['nombre'];
-            // Aquí puedes redirigir o hacer otras acciones
+            echo "<script>alert('Inicio de sesión exitoso. ¡Bienvenido " . $usuario['nombre'] . "!');
+            setTimeout(function() {
+                window.location.href = '../index.php';
+            }, 500); 
+            </script>";
+            exit();
         } else {
-            echo "Contraseña incorrecta.";
+            echo "<script>
+                alert('Contraseña incorrecta.');
+                setTimeout(function() {
+                    window.location.href = '../php/login.php';
+                }, 1000); 
+            </script>";
+
         }
     } else {
-        echo "No existe ningún usuario con ese email.";
+        echo "<script>
+                alert('No existe ningún usuario con ese email.');
+                setTimeout(function() {
+                    window.location.href = '../php/login.php';
+                }, 1000); 
+            </script>";
     }
 }
 ?>

@@ -11,15 +11,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resultado = $conexion->query($query_verificacion);
 
     if ($resultado->num_rows > 0) {
-        echo "Error: Ya existe un producto con el nombre '$nombre'.";
+        echo "<script>
+            alert('Ya existe un producto con el nombre \"$nombre\".');
+            setTimeout(function() {
+                window.location.href = '../php/agregar_productos.php';
+            }, 1000); 
+        </script>";
+
     } else {
         // Si el producto no existe, proceder a la inserción
         $query = "INSERT INTO productos (nombre, precio, stock) VALUES ('$nombre', $precio, $stock)";
         
         if ($conexion->query($query) === TRUE) {
-            echo "Producto agregado correctamente.";
+            echo "<script>
+                alert('Producto agregado correctamente.');
+                setTimeout(function() {
+                    window.location.href = '../index.php';
+                }, 1000); 
+            </script>";
         } else {
-            echo "Error al agregar el producto: " . $conexion->error;
+            echo "<script>
+                    alert('Error al agregar el producto: " . addslashes($conexion->error) . "');
+                    setTimeout(function() {
+                        window.location.href = '../php/agregar_productos.php';
+                    }, 1000); 
+                </script>";
+
         }
     }
 }

@@ -9,6 +9,7 @@ if (isset($_GET['id'])) {
     $producto = $result->fetch_assoc();
 }
 ?>
+<button onclick="history.back()" class="btn">Volver Atrás</button>
 <form action="editar_producto_conexion.php" method="POST">
 
 <form action="editar_producto_conexion.php" method="POST">
@@ -25,3 +26,5 @@ if (isset($_GET['id'])) {
 
   <button type="submit">Actualizar Producto</button>
 </form>
+
+<a href="../index.php" class="btn">Volver al Inicio</a>

@@ -3,7 +3,7 @@ include '../conexion.php';
 
 $query = "SELECT * FROM productos";
 $result = $conexion->query($query);
-
+echo '<button onclick="history.back()" class="btn">Volver Atrás</button>';
 echo "<table border='1'>
 <tr>
   <th>ID</th>
@@ -24,12 +24,10 @@ while ($producto = $result->fetch_assoc()) {
             <input type='hidden' name='id' value='{$producto['id']}'>
             <button type='submit'>Editar</button>
           </form>
-          <form action='eliminar_producto.php' method='POST' style='display:inline-block;'>
-            <input type='hidden' name='id' value='{$producto['id']}'>
-            <button type='submit' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este producto?\");'>Eliminar</button>
-          </form>
+          
         </td>
       </tr>";
 }
 echo "</table>";
+echo '<a href="../index.php" class="btn">Volver al Inicio</a>';
 ?>

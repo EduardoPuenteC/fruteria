@@ -12,14 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $conexion->query($query);
 
     if ($result->num_rows > 0) {
-        echo "El correo electrónico ya está registrado.";
+        echo "<script>
+            alert('El correo electrónico ya está registrado.');
+            setTimeout(function() {
+                window.location.href = '../php/regcrear_usuario.php'; 
+            }, 1000); 
+        </script>";
+
     } else {
         // Insertar el nuevo usuario
         $query = "INSERT INTO usuarios (nombre, email, password, rol) VALUES ('$nombre', '$email', '$password', '$rol')";
         if ($conexion->query($query) === TRUE) {
-            echo "Usuario creado con éxito.";
+            echo "<script>
+                alert('Usuario creado con éxito.');
+                setTimeout(function() {
+                    window.location.href = '../index.php'; 
+                }, 1000); 
+            </script>";
+
         } else {
-            echo "Error: " . $conexion->error;
+            echo "<script>
+                alert('Error: " . addslashes($conexion->error) . "');
+                setTimeout(function() {
+                    window.location.href = '../php/crear_usuario.php'; 
+                }, 1000); 
+            </script>";
+
         }
     }
 }

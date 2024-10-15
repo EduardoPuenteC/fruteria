@@ -1,69 +1,68 @@
 <?php
-include '../conexion.php'; // Incluye el archivo de conexión
+include '../conexion.php';
 
-// Consulta para obtener las ventas junto con los nombres de los productos
+// Obtener total de ventas
+$query_ventas = "
+    SELECT SUM(total) AS total_ventas
+    FROM ventas";
+$result_ventas = $conexion->query($query_ventas);
+$total_ventas = $result_ventas->fetch_assoc()['total_ventas'] ?? 0;
+
+// Obtener total de compras
+$query_compras = "
+    SELECT SUM(precio_compra * cantidad) AS total_compras
+    FROM compras";
+$result_compras = $conexion->query($query_compras);
+$total_compras = $result_compras->fetch_assoc()['total_compras'] ?? 0;
+
+// Calcular ganancia
+$ganancia_total = $total_ventas - $total_compras;
+
+// Consulta para obtener las compras
 $query = "
-    SELECT 
-        ventas.id, 
-        productos.nombre AS nombre_producto, 
-        ventas.cantidad, 
-        ventas.total, 
-        ventas.fecha
-    FROM 
-        ventas
-    JOIN 
-        productos ON ventas.id_producto = productos.id
-    ORDER BY 
-        ventas.fecha DESC
-";
+    SELECT compras.id, productos.nombre AS nombre_producto, compras.cantidad, compras.precio_compra AS total, compras.fecha
+    FROM compras
+    JOIN productos ON compras.id_producto = productos.id
+    ORDER BY compras.id ASC";
 
 $result = $conexion->query($query);
-?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/estilo.css">
-    <title>Lista de Ventas</title>
-</head>
-<body>
-    <h1>Lista de Ventas</h1>
-
-    <table>
-        <thead>
+    echo '<button onclick="history.back()" class="btn">Volver Atrás</button>';
+if ($result->num_rows > 0) {
+    echo "<table border='1'>
             <tr>
-                <th>ID</th>
+                <th>ID Compra</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
-                <th>Total</th>
+                <th>Precio de Compra</th>
                 <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                while ($venta = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>{$venta['id']}</td>";
-                    echo "<td>{$venta['nombre_producto']}</td>";
-                    echo "<td>{$venta['cantidad']}</td>";
-                    echo "<td>{$venta['total']}</td>";
-                    echo "<td>{$venta['fecha']}</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>No hay ventas registradas.</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+                <th>Acciones</th>
+            </tr>";
+    
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>{$row['id']}</td>
+                <td>{$row['nombre_producto']}</td>
+                <td>{$row['cantidad']}</td>
+                <td>{$row['total']}</td>
+                <td>{$row['fecha']}</td>
+                <td>
+                    <form action='editar_compra.php' method='GET' style='display:inline-block;'>
+                        <input type='hidden' name='id' value='{$row['id']}'>
+                        <button type='submit'>Editar</button>
+                    </form>
+                </td>
+              </tr>";
+    }
+    echo "</table>";
+    echo '<a href="../index.php" class="btn">Volver al Inicio</a>';
 
-    <a href="index.php">Volver al menú principal</a>
-</body>
-</html>
+    // Mostrar el total de compras y la ganancia
+    echo "<h3>Total gastado en compras: $" . number_format($total_compras, 2) . "</h3>";
+    echo "<h3>Total ganado en ventas: $" . number_format($total_ventas, 2) . "</h3>";
+    echo "<h3>Ganancia total: $" . number_format($ganancia_total, 2) . "</h3>";
+} else {
+    echo "No hay compras registradas.";
+}
 
-<?php
-$conexion->close(); // Cierra la conexión
+$conexion->close();
 ?>

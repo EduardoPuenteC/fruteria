@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     $usuario = $result->fetch_assoc();
 }
 ?>
-
+<button onclick="history.back()" class="btn">Volver Atrás</button>
 <form action="editar_usuario_conexion.php" method="POST">
   <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
 
@@ -30,3 +30,5 @@ if (isset($_GET['id'])) {
 
   <button type="submit">Actualizar Usuario</button>
 </form>
+
+<a href="../index.php" class="btn">Volver al Inicio</a>

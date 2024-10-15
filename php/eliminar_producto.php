@@ -7,9 +7,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = "DELETE FROM productos WHERE id = $id";
 
     if ($conexion->query($query) === TRUE) {
-        echo "Producto eliminado con éxito.";
+        echo "<script>
+                alert('Producto eliminado con éxito.');
+                setTimeout(function() {
+                    window.location.href = '../php/listar_productos.php';
+                }, 1000); 
+            </script>";
     } else {
-        echo "Error al eliminar producto: " . $conexion->error;
+        echo "<script>
+                alert('Error al eliminar producto: " . addslashes($conexion->error) . "');
+                setTimeout(function() {
+                    window.location.href = '../php/listar_productos.php';
+                }, 1000); 
+            </script>";
+
+
     }
 }
 ?>
