@@ -22,7 +22,7 @@ include '../conexion.php';
   </select>
 
   <label for="cantidad">Cantidad:</label>
-  <input type="number" name="cantidad" required>
+  <input type="number" name="cantidad" step="0.01" required>
 
   <label for="precio_compra">Precio de Compra:</label>
   <input type="number" step="0.01" name="precio_compra">

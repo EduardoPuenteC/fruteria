@@ -13,7 +13,7 @@
   <br><br>
   
   <label for="stock">Cantidad:</label>
-  <input type="number" name="stock" required>
+  <input type="number" name="stock" step="0.01" required>
   <br><br>
   
   <button type="submit">Agregar Producto</button>

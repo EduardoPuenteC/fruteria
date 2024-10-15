@@ -27,7 +27,7 @@ $venta = $result->fetch_assoc();
     </select>
 
     <label for="cantidad">Cantidad:</label>
-    <input type="number" name="cantidad" value="<?php echo $venta['cantidad']; ?>" required>
+    <input type="number" name="cantidad" step="0.01" value="<?php echo $venta['cantidad']; ?>" required>
 
     <label for="total">Total:</label>
     <input type="number" step="0.01" name="total" value="<?php echo $venta['total']; ?>" required>

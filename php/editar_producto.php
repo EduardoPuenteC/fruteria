@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
   <input type="number" step="0.01" name="precio" value="<?php echo $producto['precio']; ?>" required>
 
   <label for="cantidad">Cantidad:</label>
-  <input type="number" name="stock" value="<?php echo $producto['stock']; ?>" required>
+  <input type="number" name="stock" step="0.01" value="<?php echo $producto['stock']; ?>" required>
 
   <button type="submit">Actualizar Producto</button>
 </form>

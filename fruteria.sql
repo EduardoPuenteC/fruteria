@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `compras` (
   `id` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
   `precio_compra` decimal(10,2) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -86,7 +86,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `rol`) VALUES
 CREATE TABLE `ventas` (
   `id` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
+  `cantidad` decimal(10,2) NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

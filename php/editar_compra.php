@@ -27,7 +27,7 @@ $compra = $result->fetch_assoc();
     </select>
 
     <label for="cantidad">Cantidad:</label>
-    <input type="number" name="cantidad" value="<?php echo $compra['cantidad']; ?>" required>
+    <input type="number" name="cantidad" step="0.01" value="<?php echo $compra['cantidad']; ?>" required>
 
     <label for="precio_compra">Precio de Compra:</label>
     <input type="number" step="0.01" name="precio_compra" value="<?php echo $compra['precio_compra']; ?>" required>
