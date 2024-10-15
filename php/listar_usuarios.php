@@ -1,7 +1,9 @@
 <?php
 include '../conexion.php';
 
-$query = "SELECT * FROM usuarios";
+$busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+
+$query = "SELECT * FROM usuarios WHERE nombre LIKE '%$busqueda'";
 $result = $conexion->query($query);
 echo '<button onclick="history.back()" class="btn">Volver Atrás</button>';
 echo "<table border='1'>
@@ -12,6 +14,13 @@ echo "<table border='1'>
   <th>Rol</th>
   <th>Acción</th>
 </tr>";
+
+?>
+<form method="GET" action="">
+  <input type="text" name="busqueda" placeholder="Buscar usuario" value="<?php echo htmlspecialchars($busqueda); ?>">
+  <button type="submit">Buscar</button>
+</form>  
+<?php
 
 while ($usuario = $result->fetch_assoc()) {
     echo "<tr>

@@ -1,10 +1,15 @@
 <?php
 include '../conexion.php';
 
+// Inicializa la variable de búsqueda
+$busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+
 // Obtener total de ventas
 $query_ventas = "
     SELECT SUM(total) AS total_ventas
-    FROM ventas";
+    FROM ventas
+    
+";
 $result_ventas = $conexion->query($query_ventas);
 $total_ventas = $result_ventas->fetch_assoc()['total_ventas'] ?? 0;
 
@@ -23,11 +28,19 @@ $query = "
     SELECT compras.id, productos.nombre AS nombre_producto, compras.cantidad, compras.precio_compra AS total, compras.fecha
     FROM compras
     JOIN productos ON compras.id_producto = productos.id
+    WHERE 
+        productos.nombre LIKE '%$busqueda%'
     ORDER BY compras.id ASC";
 
 $result = $conexion->query($query);
     echo '<button onclick="history.back()" class="btn">Volver Atrás</button>';
 if ($result->num_rows > 0) {
+    ?>
+    <form method="GET" action="">
+    <input type="text" name="busqueda" placeholder="Buscar compra" value="<?php echo htmlspecialchars($busqueda); ?>">
+    <button type="submit">Buscar</button>
+    </form>  
+<?php
     echo "<table border='1'>
             <tr>
                 <th>ID Compra</th>
