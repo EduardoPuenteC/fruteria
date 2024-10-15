@@ -1,3 +1,5 @@
+<button onclick="history.back()" class="btn">Volver Atrás</button>
+
 <link rel="stylesheet" href="../css/estilos.css"> 
 <h1 class="title">Registrar Productos </h1>
 <form action="agregar_productos_conexion.php" method="POST">
@@ -16,3 +18,6 @@
   
   <button type="submit">Agregar Producto</button>
 </form>
+
+<a href="../index.php" class="btn">Volver al Inicio</a>
+

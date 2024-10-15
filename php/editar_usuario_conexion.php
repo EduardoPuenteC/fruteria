@@ -16,9 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($conexion->query($query) === TRUE) {
-        echo "Usuario actualizado con éxito.";
+        echo "<script>
+            alert('Usuario actualizado con éxito.');
+            setTimeout(function() {
+                window.location.href = '../php/listar_usuarios.php'; 
+            }, 1000); 
+        </script>";
+
     } else {
-        echo "Error: " . $conexion->error;
+        echo "<script>
+        alert('Error: " . addslashes($conexion->error) . "');
+            setTimeout(function() {
+                window.location.href = '../php/listar_usuarios.php'; 
+            }, 1000); 
+        </script>";
+
     }
 }
 ?>

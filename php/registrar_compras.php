@@ -3,6 +3,7 @@ include '../conexion.php';
 ?>
 
 <link rel="stylesheet" href="../css/estilo.css"> 
+<button onclick="history.back()" class="btn">Volver Atrás</button>
 
 <form action="registrar_compras_conexion.php" method="POST">
   <label for="producto">Producto:</label>
@@ -27,3 +28,4 @@ include '../conexion.php';
   <input type="number" step="0.01" name="precio_compra">
 <button type="submit">Registrar Compra</button>
 </form>
+<a href="../index.php" class="btn">Volver al Inicio</a>

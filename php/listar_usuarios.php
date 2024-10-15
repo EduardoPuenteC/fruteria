@@ -3,7 +3,7 @@ include '../conexion.php';
 
 $query = "SELECT * FROM usuarios";
 $result = $conexion->query($query);
-
+echo '<button onclick="history.back()" class="btn">Volver Atrás</button>';
 echo "<table border='1'>
 <tr>
   <th>ID</th>
@@ -32,4 +32,5 @@ while ($usuario = $result->fetch_assoc()) {
       </tr>";
 }
 echo "</table>";
+echo '<a href="../index.php" class="btn">Volver al Inicio</a>';
 ?>

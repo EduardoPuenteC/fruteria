@@ -1,3 +1,4 @@
+<button onclick="history.back()" class="btn">Volver Atrás</button>
 <link rel="stylesheet" href="../css/estilo.css"> 
 
 <form action="crear_usuario_conexion.php" method="POST">
@@ -18,3 +19,5 @@
 
   <button type="submit">Crear Usuario</button>
 </form>  
+
+<a href="../index.php" class="btn">Volver al Inicio</a>
