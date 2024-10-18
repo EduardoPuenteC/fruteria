@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.btn {
+    background-color: #295f98;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px; 
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px; 
+}
+
+form {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px; 
+    width: 100%; 
+    text-align: center; 
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left; 
+}
+
+input, select {
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    font-size: 16px; 
+}
+
+button {
+    background-color: #172181;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    width: 100%;
+}
+
+button:hover {
+    background-color: #172181; 
+}
+
+a.btn {
+    margin-top: 20px;
+    text-decoration: none; 
+    color: white; 
+    background-color: #da1111; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+}
+
+a.btn:hover {
+    background-color: #680505; 
+}
+
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+        max-width: 100%; 
+    }
+
+    input, select {
+        font-size: 14px; 
+    }
+
+    button {
+        font-size: 14px; 
+    }
+}
